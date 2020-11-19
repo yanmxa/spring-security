@@ -5,6 +5,7 @@ import com.nood.entity.Users;
 import com.nood.mapper.UsersMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -32,13 +33,7 @@ public class UserDetailServiceImp implements UserDetailsService {
             throw new UsernameNotFoundException("user is not exist!");
         }
 
-        List<GrantedAuthority> authorities = new ArrayList<>();
-        authorities.add(new GrantedAuthority() {
-            @Override
-            public String getAuthority() {
-                return "manager";
-            }
-        });
+        List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList("admins,ROLE_manager");
 
         return new org.springframework.security.core.userdetails.User(
                 users.getUsername(),
