@@ -15,3 +15,13 @@ INSERT INTO `users` (`id`, `username`, `password`)
 VALUES
 	(1,'admin','123'),
 	(2,'user','456');
+
+
+DROP TABLE IF EXISTS `persistent_logins`;
+CREATE TABLE `persistent_logins` (
+  `username` VARCHAR (64) NOT NULL,
+  `series` VARCHAR (64) NOT NULL,
+  `token` VARCHAR (64) NOT NULL,
+  `last_used` TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP ,
+  PRIMARY KEY (`series`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
