@@ -29,6 +29,10 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        // 404
+        http.exceptionHandling().accessDeniedPage("/unauth.html");
+
         http.formLogin()
             .loginProcessingUrl("/user/login")
             .defaultSuccessUrl("/test/index")

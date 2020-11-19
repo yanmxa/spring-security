@@ -33,7 +33,7 @@ public class UserDetailServiceImp implements UserDetailsService {
             throw new UsernameNotFoundException("user is not exist!");
         }
 
-        List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList("admins,ROLE_manager");
+        List<GrantedAuthority> authorities = AuthorityUtils.commaSeparatedStringToAuthorityList("admins,ROLE_manager123");
 
         return new org.springframework.security.core.userdetails.User(
                 users.getUsername(),
