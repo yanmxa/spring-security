@@ -31,12 +31,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
 
         // 404
-        http.exceptionHandling().accessDeniedPage("/unauth.html");
+        http.exceptionHandling()
+                .accessDeniedPage("/unauth.html");
 
         http.formLogin()
-            .loginProcessingUrl("/user/login")
-            .defaultSuccessUrl("/test/index")
-            .loginPage("/login.html");
+                .loginProcessingUrl("/user/login")
+                .defaultSuccessUrl("/success.html")
+                .loginPage("/login.html");
+
+        http.logout()
+                .logoutUrl("/logout").logoutSuccessUrl("/test/hello").permitAll();
+
 
         http.authorizeRequests()
                 .antMatchers("/","/test/hello","/user/login", "/login.html").permitAll()    // 设置不需要拦截的页面
