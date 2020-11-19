@@ -9,8 +9,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/test")
 public class TestController {
 
+    @GetMapping("index")
+    public String index() {
+        return "hello index";
+    }
+
     @GetMapping("hello")
     public String hello() {
-        return "hello world";
+        return "hello security";
     }
 }
