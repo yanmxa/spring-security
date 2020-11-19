@@ -1,0 +1,36 @@
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/test?characterEncoding=UTF-8
+    username: root
+    password: 123
+
+#  security:
+#    user:
+#      name: hello
+#      password: hello
+
+
+#  # 热部署
+#  thymeleaf:
+#    cache: false      #关闭缓存，进行实时更新
+#  devtools:
+#    restart:
+#      enabled: true                      #开启devtools热部署
+#      additional-paths: src/main/java    #设置重启监视目录
+
+#  mvc:
+#    view:
+#      prefix: /
+#  main:
+#    allow-bean-definition-overriding: true
+#  thymeleaf:
+#    cache: false
+
+mybatis:
+  mapper-locations: mappers/*.xml
+  type-aliases-package: com.nood.model
+
+
+

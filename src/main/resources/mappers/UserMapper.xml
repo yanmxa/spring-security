@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.nood.mapper.UserMapper">
+
+    <resultMap id="userMap" type="com.nood.model.User">
+        <id property="uid" column="uid" />
+        <result property="username" column="uname"/>
+        <result property="password" column="password" />
+        <collection property="roles" ofType="com.nood.model.Role">
+            <id property="rid" column="rid" />
+            <result property="roleName" column="rname" />
+            <collection property="permissions" ofType="com.nood.model.Permission">
+                <id property="pid" column="pid" />
+                <result property="permissionName" column="pname" />
+                <result property="url" column="url" />
+                <result property="descrption" column="descrption" />
+            </collection>
+        </collection>
+    </resultMap>
+
+    <select id="findByName" parameterType="string" resultMap="userMap">
+      SELECT u.*, r.*, p.*
+      FROM user u
+        INNER JOIN user_role ur on u.uid = ur.uid
+        INNER JOIN role r on ur.rid = r.rid
+        INNER JOIN permission_role pr on r.rid = pr.rid
+        INNER JOIN permission p on pr.pid = p.pid
+      WHERE u.uname = #{name}
+    </select>
+</mapper>
