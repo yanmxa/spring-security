@@ -36,7 +36,7 @@ public class UserDetailServiceImp implements UserDetailsService {
         authorities.add(new GrantedAuthority() {
             @Override
             public String getAuthority() {
-                return "role";
+                return "manager";
             }
         });
 

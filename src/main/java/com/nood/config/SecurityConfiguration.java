@@ -36,6 +36,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers("/","/test/hello","/user/login", "/login.html").permitAll()    // 设置不需要拦截的页面
+//                .antMatchers("/test/index").hasAuthority("admins")
+                .antMatchers("/test/index").hasAnyAuthority("admins, manager")  // 满足任何一个权限就可以访问
                 .anyRequest().authenticated();                                                          // 其他请求必须认证后才可以被访问
 
         http.csrf().disable();
